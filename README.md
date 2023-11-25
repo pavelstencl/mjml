@@ -1,3 +1,43 @@
+# FORK: Extendable GrapesJS MJML
+
+This is a fork of [grapsejs-mjml](https://github.com/GrapesJS/mjml) package, which allows to add custom mjml parser and cutom mjml components
+into grapesjs mjml plugin.
+
+### Using Independent mjml-browser Build
+
+In case, you have your own version of MJML with custom or extended components, it is possible
+to override default [mjml parser](https://github.com/mjmlio/mjml/tree/master/packages/mjml-browser)
+with custom one and create custom grapesJS components.
+
+For further info how to create MJML Component, you can
+[visit components folder](https://github.com/GrapesJS/mjml/tree/master/src/components)
+or you can go to [docs](https://grapesjs.com/docs/modules/Components.html#define-custom-component-type).
+
+```ts
+import 'grapesjs/dist/css/grapes.min.css'
+import grapesJS from 'grapesjs'
+import grapesJSMJML from 'grapesjs-mjml'
+import customMjmlParser from 'custom-mjml-parser';
+
+import customImage from 'custom/components/path'
+
+grapesJS.init({
+   fromElement: true,
+   container: '#gjs',
+   plugins: [grapesJSMJML],
+   pluginsOpts: {
+      [grapesJSMJML]: {
+        mjmlParser: customMjmlParser,
+        customComponents: [
+          customImage,
+        ]
+      }
+   },
+});
+```
+
+____
+
 # GrapesJS MJML
 
 > Requires GrapesJS v0.15.9 or higher
